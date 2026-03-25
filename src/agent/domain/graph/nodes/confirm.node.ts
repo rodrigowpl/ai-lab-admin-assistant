@@ -1,6 +1,6 @@
 import { type AgentState } from '../state.js';
 import { type CalendarApi } from '../../../../calendar/public/calendar.api.js';
-import { type LlmService } from '../../services/llm.service.js';
+import { type ILlmService } from '../../services/llm.interface.js';
 import {
   ConfirmSchema,
   getSystemPrompt,
@@ -9,7 +9,7 @@ import { HumanMessage } from '@langchain/core/messages';
 
 export function createConfirmNode(
   calendarApi: CalendarApi,
-  llmService: LlmService,
+  llmService: ILlmService,
 ) {
   return async (state: AgentState): Promise<Partial<AgentState>> => {
     const lastMessage = state.messages[state.messages.length - 1];

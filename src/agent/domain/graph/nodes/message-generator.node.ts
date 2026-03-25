@@ -1,13 +1,13 @@
 import { AIMessage } from '@langchain/core/messages';
 import { type AgentState } from '../state.js';
-import { type LlmService } from '../../services/llm.service.js';
+import { type ILlmService } from '../../services/llm.interface.js';
 import {
   MessageGeneratorSchema,
   getSystemPrompt,
 } from '../../prompts/message-generator.prompt.js';
 import { type CalendarEvent } from '../../../../calendar/domain/models/index.js';
 
-export function createMessageGeneratorNode(llmService: LlmService) {
+export function createMessageGeneratorNode(llmService: ILlmService) {
   return async (state: AgentState): Promise<Partial<AgentState>> => {
     const scenario = determineScenario(state);
     const contextData = buildContextData(state);

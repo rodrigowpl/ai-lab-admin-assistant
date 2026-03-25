@@ -10,11 +10,11 @@ import {
   createConfirmNode,
   createMessageGeneratorNode,
 } from './nodes/index.js';
-import { type LlmService } from '../services/llm.service.js';
+import { type ILlmService } from '../services/llm.interface.js';
 import { type CalendarApi } from '../../../calendar/public/calendar.api.js';
 
 export interface GraphDependencies {
-  llmService: LlmService;
+  llmService: ILlmService;
   calendarApi: CalendarApi;
 }
 

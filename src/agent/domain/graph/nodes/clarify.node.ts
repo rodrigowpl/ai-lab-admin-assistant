@@ -1,11 +1,11 @@
 import { type AgentState } from '../state.js';
-import { type LlmService } from '../../services/llm.service.js';
+import { type ILlmService } from '../../services/llm.interface.js';
 import {
   MessageGeneratorSchema,
   getSystemPrompt,
 } from '../../prompts/message-generator.prompt.js';
 
-export function createClarifyNode(llmService: LlmService) {
+export function createClarifyNode(llmService: ILlmService) {
   return async (state: AgentState): Promise<Partial<AgentState>> => {
     let scenario: string;
     let contextData: string;

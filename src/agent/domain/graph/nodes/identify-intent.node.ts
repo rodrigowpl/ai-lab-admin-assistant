@@ -1,12 +1,12 @@
 import { type AgentState } from '../state.js';
-import { type LlmService } from '../../services/llm.service.js';
+import { type ILlmService } from '../../services/llm.interface.js';
 import {
   IdentifyIntentSchema,
   getSystemPrompt,
 } from '../../prompts/identify-intent.prompt.js';
 import { HumanMessage } from '@langchain/core/messages';
 
-export function createIdentifyIntentNode(llmService: LlmService) {
+export function createIdentifyIntentNode(llmService: ILlmService) {
   return async (state: AgentState): Promise<Partial<AgentState>> => {
     const lastMessage = state.messages[state.messages.length - 1];
     const messageContent =
