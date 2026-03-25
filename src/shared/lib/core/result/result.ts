@@ -4,23 +4,23 @@ export class Result<T, E = string> {
     private readonly _error: E | null,
   ) {}
 
-  isSuccess(): this is Result<T, null> {
+  isSuccess(): boolean {
     return this._error === null;
   }
 
-  isFailure(): this is Result<null, E> {
+  isFailure(): boolean {
     return this._error !== null;
   }
 
   get value(): T {
-    if (!this.isSuccess()) {
+    if (this._error !== null) {
       throw new Error('Cannot get value of a failed result');
     }
     return this._value as T;
   }
 
   get error(): E {
-    if (!this.isFailure()) {
+    if (this._error === null) {
       throw new Error('Cannot get error of a successful result');
     }
     return this._error as E;
@@ -30,19 +30,19 @@ export class Result<T, E = string> {
     onSuccess: (value: T) => U;
     onFailure: (error: E) => U;
   }): U {
-    if (this.isSuccess()) {
+    if (this._error === null) {
       return options.onSuccess(this._value as T);
     }
     return options.onFailure(this._error as E);
   }
 
-  static ok<T>(data: T): Result<T, null> {
-    return new Result<T, null>(data, null);
+  static ok<T, E = never>(data: T): Result<T, E> {
+    return new Result<T, E>(data, null);
   }
 
-  static fail<E>(error: E): Result<null, E> {
-    return new Result<null, E>(null, error);
+  static fail<E, T = never>(error: E): Result<T, E> {
+    return new Result<T, E>(null, error);
   }
 }
 
-export type Either<T, E> = Result<T, null> | Result<null, E>;
+export type Either<T, E> = Result<T, E>;
