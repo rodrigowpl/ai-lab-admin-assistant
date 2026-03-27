@@ -1,10 +1,10 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { type ZodType } from "zod";
 import { type Config } from "../../lib/config.ts";
+import { ILlmService } from "./llm.interface.ts";
 
-export class LlmService {
+export class LlmService implements ILlmService {
   private readonly model: ChatOpenAI;
-
   private readonly config: Config;
 
   constructor(config: Config) {
