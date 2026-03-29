@@ -6,3 +6,5 @@ export { createEditEventNode } from './edit-event.node.ts';
 export { createClarifyNode } from './clarify.node.ts';
 export { createConfirmNode } from './confirm.node.ts';
 export { createMessageGeneratorNode } from './message-generator.node.ts';
+export { createSafeguardCheckNode } from './safeguard-check.node.ts';
+export { injectionBlockedNode } from './injection-blocked.node.ts';

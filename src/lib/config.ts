@@ -23,9 +23,15 @@ export const config = {
     project: env('LANGSMITH_PROJECT', 'ai-admin-assistant'),
     tracing: env('LANGSMITH_TRACING', 'false'),
   },
+  safeguard: {
+    model: env('SAFEGUARD_MODEL', 'openai/gpt-oss-safeguard-20b'),
+    apiKey: env('SAFEGUARD_API_KEY', env('OPENROUTER_API_KEY')),
+    baseUrl: env('SAFEGUARD_BASE_URL', env('OPENROUTER_BASE_URL', 'https://openrouter.ai/api/v1')),
+  },
   defaults: {
     defaultDurationMinutes: Number(env('DEFAULT_DURATION_MINUTES', '30')),
     defaultCalendar: env('DEFAULT_CALENDAR_NAME', 'Work'),
+    userRole: env('DEFAULT_USER_ROLE', 'member') as 'admin' | 'member',
     language: 'pt-BR' as const,
   },
 } as const;

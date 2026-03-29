@@ -25,6 +25,8 @@ export function createMessageGeneratorNode(llmService: ILlmService) {
 }
 
 function determineScenario(state: AgentState): string {
+  if (state.actionError === 'injection_blocked') return 'injection_blocked';
+  if (state.actionError === 'permission_denied') return 'permission_denied';
   if (state.actionError === 'missing_info') return 'missing_info';
   if (state.actionError === 'multiple_events') return 'disambiguation';
   if (state.actionError === 'Operação cancelada pelo usuário')

@@ -1,8 +1,25 @@
 import { Annotation, MessagesAnnotation } from '@langchain/langgraph';
 import { type CalendarEvent, type TimeSlot } from '../../calendar/calendar.types.ts';
+import { type SafeguardResult } from '../services/safeguard.service.ts';
+import { config } from '../../lib/config.ts';
+
+export type UserRole = 'admin' | 'member';
 
 export const AgentStateAnnotation = Annotation.Root({
   ...MessagesAnnotation.spec,
+
+  // User role — controlled by DEFAULT_USER_ROLE env var
+  userRole: Annotation<UserRole>({
+    default: () => config.defaults.userRole,
+    value: (_prev, next) => next,
+  }),
+
+  // Safeguard / guardrails
+  guardrailsEnabled: Annotation<boolean>({
+    default: () => true,
+    value: (_prev, next) => next,
+  }),
+  safeguardResult: Annotation<SafeguardResult | undefined>,
 
   // Intent classification
   intent: Annotation<

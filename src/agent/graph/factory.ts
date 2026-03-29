@@ -3,6 +3,7 @@ import { GoogleAuthProvider } from "../../calendar/google-auth.provider.ts";
 import { GoogleCalendarRepository } from "../../calendar/google-calendar.repository.ts";
 import { CalendarService } from "../../calendar/calendar.service.ts";
 import { LlmService } from "../services/llm.service.ts";
+import { SafeguardService } from "../services/safeguard.service.ts";
 import { createAgentGraph } from "./graph.ts";
 
 export async function buildGraph() {
@@ -10,6 +11,7 @@ export async function buildGraph() {
   const calendarRepo = new GoogleCalendarRepository(authProvider);
   const calendarService = new CalendarService(calendarRepo, config);
   const llmService = new LlmService(config);
+  const safeguardService = new SafeguardService(config);
 
-  return createAgentGraph({ llmService, calendarService });
+  return createAgentGraph({ llmService, calendarService, safeguardService });
 }
