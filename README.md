@@ -9,7 +9,6 @@ Construido com NestJS, LangGraph e Google Calendar API.
 | Tecnologia | Uso | Docs |
 |---|---|---|
 | [TypeScript](https://www.typescriptlang.org/) | Linguagem principal | [Docs](https://www.typescriptlang.org/docs/) |
-| [NestJS](https://nestjs.com/) | Framework backend (com Fastify) | [Docs](https://docs.nestjs.com/) |
 | [LangChain.js](https://js.langchain.com/) | Orquestracao do agente de IA | [Docs](https://js.langchain.com/docs/) |
 | [LangGraph](https://langchain-ai.github.io/langgraphjs/) | Grafo de estado do agente (intent → action → response) | [Docs](https://langchain-ai.github.io/langgraphjs/) |
 | [OpenRouter](https://openrouter.ai/) | Gateway para LLMs (default: `gpt-4o-mini`) | [Docs](https://openrouter.ai/docs) |
